@@ -11,7 +11,7 @@
   },
   "build": "quasar build",
   "start": "node server.js",
-  "heroku-postbuild": "npm",
+  "heroku-postbuild": "npm install -g @quasar/cli && quasar build",
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^0.21.1",
