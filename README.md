@@ -1,3 +1,5 @@
+This project is using Quasar Framework (VueJS)
+
 To run this project, you should installl dependencies, using:
 
 npm install
