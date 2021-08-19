@@ -13,6 +13,16 @@
       <div class="my-main-box">
         <widget-component></widget-component>
         <banner-component></banner-component>
+        <div class="row my-containers">
+          <div class="col-md-9 col-xs-12">
+            Hola
+          </div>
+          <div class="col-md-3 col-xs-12">
+            <div class="my-container-floating">
+              Hola
+            </div>
+          </div>
+        </div>
       </div>
     </q-page-container>
   </q-layout>
@@ -62,5 +72,12 @@ export default defineComponent({
   padding: 2%;
   margin: 1% 4%;
   border-radius: 20px;
+}
+.my-containers {
+  margin-top: 20px;
+}
+.my-container-floating {
+  position: absolute;
+  margin-top: -40px;
 }
 </style>
