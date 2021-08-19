@@ -15,10 +15,30 @@
         <banner-component></banner-component>
         <div class="row my-containers">
           <div class="col-md-9 col-xs-12">
-            Hola
+            <div class="row">
+              <div class="col-md-3 col-xs-12">
+                <div class="text-h6">
+                  <b>3 Days</b> Forecast
+                </div>
+                <div class="my-next-days">
+                  <weather-day-component></weather-day-component>
+                  <weather-day-component></weather-day-component>
+                  <weather-day-component></weather-day-component>
+                </div>
+              </div>
+              <div class="col-md-1 col-xs-12"></div>
+              <div class="col-md-3 col-xs-12">
+                <div class="text-h6">
+                  <b>Place to</b> Visit.
+                </div>
+              </div>
+              <div class="col-md-1 col-xs-12"></div>
+              <div class="col-md-3 col-xs-12">S</div>
+              <div class="col-md-1 col-xs-12"></div>
+            </div>
           </div>
           <div class="col-md-3 col-xs-12">
-            <div class="my-container-floating">
+            <div :class="$q.screen.xs ? '' : 'my-container-floating'">
               Hola
             </div>
           </div>
@@ -32,6 +52,7 @@
 import { defineComponent } from 'vue'
 import BannerComponent from '../components/BannerComponent'
 import WidgetComponent from '../components/WidgetComponent'
+import WeatherDayComponent from '../components/WeatherDayComponent'
 
 export default defineComponent({
   name: 'MainLayout',
@@ -39,7 +60,8 @@ export default defineComponent({
   components: {
     // EssentialLink
     BannerComponent,
-    WidgetComponent
+    WidgetComponent,
+    WeatherDayComponent
   },
 
   // setup () {
@@ -74,10 +96,13 @@ export default defineComponent({
   border-radius: 20px;
 }
 .my-containers {
-  margin-top: 20px;
+  margin-top: 25px;
 }
 .my-container-floating {
   position: absolute;
   margin-top: -40px;
+}
+.my-next-days {
+  margin-top: 10px;
 }
 </style>
