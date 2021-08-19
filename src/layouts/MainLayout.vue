@@ -11,6 +11,7 @@
         </div>
       </div>
       <div class="my-main-box">
+        <widget-component></widget-component>
         <banner-component></banner-component>
       </div>
     </q-page-container>
@@ -20,13 +21,15 @@
 <script>
 import { defineComponent } from 'vue'
 import BannerComponent from '../components/BannerComponent'
+import WidgetComponent from '../components/WidgetComponent'
 
 export default defineComponent({
   name: 'MainLayout',
 
   components: {
     // EssentialLink
-    BannerComponent
+    BannerComponent,
+    WidgetComponent
   },
 
   // setup () {
