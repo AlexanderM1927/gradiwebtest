@@ -11,9 +11,9 @@
         </div>
       </div>
       <div class="my-main-box">
-        <widget-component></widget-component>
+        <widget-component class="animate__animated animate__slideInLeft"></widget-component>
         <banner-component></banner-component>
-        <div class="row my-containers">
+        <div class="row my-containers animate__animated animate__slideInLeft">
           <div class="col-md-9 col-xs-12">
             <div class="row">
               <div class="col-md-3 col-xs-12">
@@ -91,7 +91,7 @@ import PlaceToVisitMiniComponent from '../components/PlaceToVisitMiniComponent'
 import PlaceToVisitMidComponent from '../components/PlaceToVisitMidComponent'
 import CityComponent from '../components/CityComponent'
 import AddCityComponent from '../components/AddCityComponent'
-
+import 'animate.css'
 export default defineComponent({
   name: 'MainLayout',
 
@@ -172,6 +172,6 @@ export default defineComponent({
   margin-left: 2px;
 }
 .my-avatars-list {
-  margin-left: 30px;
+  margin-left: 28px;
 }
 </style>
