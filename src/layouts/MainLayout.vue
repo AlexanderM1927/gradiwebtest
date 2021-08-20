@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="my-main-box">
-        <widget-component class="animate__animated animate__slideInLeft"></widget-component>
+        <widget-component v-if="weatherMainCity" :weather="weatherMainCity" class="animate__animated animate__slideInLeft"></widget-component>
         <banner-component class="animate__animated animate__slideInLeft"></banner-component>
         <div class="row my-containers animate__animated animate__slideInLeft">
           <div class="col-md-9 col-xs-12">
@@ -19,9 +19,9 @@
                   <b>3 Days</b> Forecast
                 </div>
                 <div class="my-mt-10">
-                  <weather-day-component :day="firstDay"></weather-day-component>
-                  <weather-day-component :day="secondDay"></weather-day-component>
-                  <weather-day-component :day="thirdDay"></weather-day-component>
+                  <weather-day-component v-if="weatherFirstDay" :day="weatherFirstDay" :isFirstDay="true"></weather-day-component>
+                  <weather-day-component v-if="weatherSecondDay" :day="weatherSecondDay"></weather-day-component>
+                  <weather-day-component v-if="weatherThirdDay" :day="weatherThirdDay"></weather-day-component>
                 </div>
               </div>
               <div class="col-md-1 col-xs-12"></div>
@@ -68,8 +68,8 @@
           </div>
           <div class="col-md-3 col-xs-12">
             <div :class="$q.screen.xs ? '' : 'my-container-floating'">
-              <city-component></city-component>
-              <city-component></city-component>
+              <city-component v-if="weatherLyonCity" :city="weatherLyonCity"></city-component>
+              <city-component v-if="weatherParisCity" :city="weatherParisCity"></city-component>
               <add-city-component></add-city-component>
             </div>
           </div>
@@ -89,6 +89,7 @@ import PlaceToVisitMiniComponent from '../components/PlaceToVisitMiniComponent'
 import PlaceToVisitMidComponent from '../components/PlaceToVisitMidComponent'
 import CityComponent from '../components/CityComponent'
 import AddCityComponent from '../components/AddCityComponent'
+import { date } from 'quasar'
 import 'animate.css'
 export default defineComponent({
   name: 'MainLayout',
@@ -107,38 +108,85 @@ export default defineComponent({
   data () {
     return {
       text: 'Hello world',
-      firstDay: {
-        isNextDay: true
-      },
-      secondDay: {
-        isNextDay: false
-      },
-      thirdDay: {
-        isNextDay: false
-      },
-      modalAddPlace: false
+      modalAddPlace: false,
+      weatherMainCity: null,
+      weatherLyonCity: null,
+      weatherParisCity: null,
+      weatherFirstDay: null,
+      weatherSecondDay: null,
+      weatherThirdDay: null
     }
   },
   mounted () {
     this.getWeatherMainCity()
+    this.getWeatherLyonCity()
+    this.getWeatherParisCity()
     this.getForecast()
   },
   methods: {
     getWeatherMainCity () {
       const xhttp = new XMLHttpRequest()
       xhttp.onload = (response) => {
-        console.log(JSON.parse(response.target.response))
+        this.weatherMainCity = JSON.parse(response.target.response)
       }
       xhttp.open('GET', 'https://api.openweathermap.org/data/2.5/weather?q=bogota&appid=2feec8ba20ee284ee9c81255cddb20b4&units=metric')
       xhttp.send()
     },
-    getForecast () {
+    getWeatherLyonCity () {
       const xhttp = new XMLHttpRequest()
       xhttp.onload = (response) => {
-        console.log(JSON.parse(response.target.response))
+        this.weatherLyonCity = JSON.parse(response.target.response)
+        console.log('this.weatherLyonCity')
+        console.log(this.weatherLyonCity)
+      }
+      xhttp.open('GET', 'https://api.openweathermap.org/data/2.5/weather?q=lyon&appid=2feec8ba20ee284ee9c81255cddb20b4&units=metric')
+      xhttp.send()
+    },
+    getWeatherParisCity () {
+      const xhttp = new XMLHttpRequest()
+      xhttp.onload = (response) => {
+        this.weatherParisCity = JSON.parse(response.target.response)
+      }
+      xhttp.open('GET', 'https://api.openweathermap.org/data/2.5/weather?q=paris&appid=2feec8ba20ee284ee9c81255cddb20b4&units=metric')
+      xhttp.send()
+    },
+    getForecast () {
+      const xhttp = new XMLHttpRequest()
+      xhttp.onload = async (response) => {
+        const resIntoJsonFormat = JSON.parse(response.target.response)
+        const weatherDays = this.getNextDays(resIntoJsonFormat.list)
+        this.weatherFirstDay = weatherDays[0]
+        this.weatherSecondDay = weatherDays[1]
+        this.weatherThirdDay = weatherDays[2]
       }
       xhttp.open('GET', 'https://api.openweathermap.org/data/2.5/forecast?q=bogota&appid=2feec8ba20ee284ee9c81255cddb20b4&units=metric')
       xhttp.send()
+    },
+    getNextDays (list) {
+      if (list) {
+        const res = []
+        for (let index = 0; index < list.length; index++) {
+          if (this.isIntoNextDays(list[index]) && !this.isDayIntoList(res, list[index])) res.push(list[index])
+        }
+        return res
+      }
+    },
+    isIntoNextDays (value) {
+      let res = false
+      const { addToDate } = date
+      const dateIntoThreeDays = addToDate(new Date(), { days: 3 })
+      if (new Date(value.dt_txt) <= dateIntoThreeDays && new Date(value.dt_txt) > addToDate(new Date(), { days: 1 })) res = true
+      return res
+    },
+    isDayIntoList (list, day) {
+      let res = false
+      for (let index = 0; index < list.length; index++) {
+        if (date.isSameDate(list[index].dt_txt, day.dt_txt, 'day')) {
+          res = true
+          break
+        }
+      }
+      return res
     }
   }
 })
