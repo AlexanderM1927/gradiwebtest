@@ -2,7 +2,7 @@
   <div class="city">
     <div class="row">
       <div class="col-12 my-center">
-        <q-btn no-caps outline rounded color="primary" label="Add location" />
+        <q-btn no-caps outline rounded class="my-custom-btn" color="primary" label="Add location" />
       </div>
     </div>
     <div class="row">
@@ -48,5 +48,9 @@ export default defineComponent({
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+}
+.my-custom-btn {
+  font-weight: bold;
+  background: #f0f1fb !important;
 }
 </style>
