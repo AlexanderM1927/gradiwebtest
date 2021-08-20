@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="col-4">
-        <div class="my-weather">
+        <div :class="'my-weather vertical-middle ' + (day.isNextDay ? 'my-next-day' : 'my-another-day')">
           32°/23°
         </div>
       </div>
@@ -28,6 +28,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'WeatherDayComponent',
+  props: ['day'],
   data () {
     return {
     }
@@ -36,7 +37,8 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .my-day{
-  margin: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   border: 1px solid #eaeaea;
   border-radius: 10px;
   // padding: 10px;
@@ -52,11 +54,22 @@ export default defineComponent({
   padding: 10px 0px;
   word-break: break-word;
   text-align: center;
-  background: #7c67ee;
   height: 100%;
   line-height: 40px;
   border-radius: 10px;
   color: white;
   font-weight: bold;
+}
+.my-next-day {
+  background: #7c67ee;
+}
+.my-another-day {
+  background: #daebf0;
+  color: black;
+}
+.my-img-description {
+  vertical-align: middle;
+  align-items: center;
+  line-height: 22px;
 }
 </style>

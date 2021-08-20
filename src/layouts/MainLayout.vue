@@ -21,9 +21,9 @@
                   <b>3 Days</b> Forecast
                 </div>
                 <div class="my-mt-10">
-                  <weather-day-component></weather-day-component>
-                  <weather-day-component></weather-day-component>
-                  <weather-day-component></weather-day-component>
+                  <weather-day-component :day="firstDay"></weather-day-component>
+                  <weather-day-component :day="secondDay"></weather-day-component>
+                  <weather-day-component :day="thirdDay"></weather-day-component>
                 </div>
               </div>
               <div class="col-md-1 col-xs-12"></div>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="my-mt-10">
                   <place-to-visit-mini-component></place-to-visit-mini-component>
-                  <place-to-visit-mid-component></place-to-visit-mid-component>
+                  <place-to-visit-mid-component @showModalAddPlaces="modalAddPlace = true"></place-to-visit-mid-component>
                 </div>
               </div>
               <div class="col-md-1 col-xs-12"></div>
@@ -52,6 +52,7 @@
             <div :class="$q.screen.xs ? '' : 'my-container-floating'">
               <city-component></city-component>
               <city-component></city-component>
+              <add-city-component></add-city-component>
             </div>
           </div>
         </div>
@@ -69,6 +70,7 @@ import PlaceToVisitLargeComponent from '../components/PlaceToVisitLargeComponent
 import PlaceToVisitMiniComponent from '../components/PlaceToVisitMiniComponent'
 import PlaceToVisitMidComponent from '../components/PlaceToVisitMidComponent'
 import CityComponent from '../components/CityComponent'
+import AddCityComponent from '../components/AddCityComponent'
 
 export default defineComponent({
   name: 'MainLayout',
@@ -81,7 +83,8 @@ export default defineComponent({
     PlaceToVisitLargeComponent,
     PlaceToVisitMiniComponent,
     PlaceToVisitMidComponent,
-    CityComponent
+    CityComponent,
+    AddCityComponent
   },
 
   // setup () {
@@ -97,7 +100,17 @@ export default defineComponent({
   // }
   data () {
     return {
-      text: 'Hello world'
+      text: 'Hello world',
+      firstDay: {
+        isNextDay: true
+      },
+      secondDay: {
+        isNextDay: false
+      },
+      thirdDay: {
+        isNextDay: false
+      },
+      modalAddPlace: false
     }
   }
 })
@@ -120,7 +133,8 @@ export default defineComponent({
 }
 .my-container-floating {
   // position: absolute;
-  margin-top: -60px;
+  margin-top: -120px;
+  width: 90%;
 }
 .my-mt-10 {
   margin-top: 10px;
