@@ -67,7 +67,7 @@
             </div>
           </div>
           <div class="col-md-3 col-xs-12">
-            <div :class="$q.screen.xs ? '' : 'my-container-floating'">
+            <div :class="$q.screen.xs || $q.screen.sm ? '' : 'my-container-floating'">
               <city-component v-if="weatherLyonCity" :city="weatherLyonCity"></city-component>
               <city-component v-if="weatherParisCity" :city="weatherParisCity"></city-component>
               <add-city-component></add-city-component>
