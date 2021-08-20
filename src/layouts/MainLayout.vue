@@ -119,8 +119,8 @@ export default defineComponent({
   margin-top: 25px;
 }
 .my-container-floating {
-  position: absolute;
-  margin-top: -40px;
+  // position: absolute;
+  margin-top: -60px;
 }
 .my-mt-10 {
   margin-top: 10px;
