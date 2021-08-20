@@ -20,7 +20,7 @@
                 <div class="text-h6">
                   <b>3 Days</b> Forecast
                 </div>
-                <div class="my-next-days">
+                <div class="my-mt-10">
                   <weather-day-component></weather-day-component>
                   <weather-day-component></weather-day-component>
                   <weather-day-component></weather-day-component>
@@ -31,15 +31,27 @@
                 <div class="text-h6">
                   <b>Place to</b> Visit.
                 </div>
+                <div class="my-mt-10">
+                  <place-to-visit-large-component></place-to-visit-large-component>
+                </div>
               </div>
               <div class="col-md-1 col-xs-12"></div>
-              <div class="col-md-3 col-xs-12">S</div>
+              <div class="col-md-3 col-xs-12">
+                <div class="my-title-reviews">
+                  <b>Top reviews</b>
+                </div>
+                <div class="my-mt-10">
+                  <place-to-visit-mini-component></place-to-visit-mini-component>
+                  <place-to-visit-mid-component></place-to-visit-mid-component>
+                </div>
+              </div>
               <div class="col-md-1 col-xs-12"></div>
             </div>
           </div>
           <div class="col-md-3 col-xs-12">
             <div :class="$q.screen.xs ? '' : 'my-container-floating'">
-              Hola
+              <city-component></city-component>
+              <city-component></city-component>
             </div>
           </div>
         </div>
@@ -53,6 +65,10 @@ import { defineComponent } from 'vue'
 import BannerComponent from '../components/BannerComponent'
 import WidgetComponent from '../components/WidgetComponent'
 import WeatherDayComponent from '../components/WeatherDayComponent'
+import PlaceToVisitLargeComponent from '../components/PlaceToVisitLargeComponent'
+import PlaceToVisitMiniComponent from '../components/PlaceToVisitMiniComponent'
+import PlaceToVisitMidComponent from '../components/PlaceToVisitMidComponent'
+import CityComponent from '../components/CityComponent'
 
 export default defineComponent({
   name: 'MainLayout',
@@ -61,7 +77,11 @@ export default defineComponent({
     // EssentialLink
     BannerComponent,
     WidgetComponent,
-    WeatherDayComponent
+    WeatherDayComponent,
+    PlaceToVisitLargeComponent,
+    PlaceToVisitMiniComponent,
+    PlaceToVisitMidComponent,
+    CityComponent
   },
 
   // setup () {
@@ -102,7 +122,12 @@ export default defineComponent({
   position: absolute;
   margin-top: -40px;
 }
-.my-next-days {
+.my-mt-10 {
   margin-top: 10px;
+}
+.my-title-reviews {
+  font-size: 17px;
+  line-height: 30px;
+  color: #c6c6c5;
 }
 </style>
