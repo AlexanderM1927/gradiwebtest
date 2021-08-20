@@ -3,25 +3,25 @@
     <div class="row">
       <div class="col-3">
         <div class="my-weather">
-          <img :src="'http://openweathermap.org/img/w/04d.png'">
+          <img :src="'http://openweathermap.org/img/w/' + city.weather[0].icon +'.png'">
         </div>
       </div>
       <div class="col-9">
         <div class="my-des">
           <div class="my-weather-number">
-            29°ᶜ
+            {{Math.round(city.main.temp)}}°ᶜ
           </div>
           <div class="my-city">
-            <b style="font-size: 16px;">Lyon</b><br>
-            Francia
+            <b style="font-size: 16px;">{{city.name}}</b><br>
+            {{city.sys.country}}
           </div>
         </div>
       </div>
     </div>
     <div class="row text-center my-color-gray my-city-dates">
-      <div class="col-4 my-border-right">Humidity: 48%</div>
-      <div class="col-4 my-border-right">Northwast</div>
-      <div class="col-4">83km/h</div>
+      <div class="col-4 my-border-right">Humidity: {{city.main.humidity}}%</div>
+      <div class="col-4 my-border-right">{{city.name === 'Paris' ? 'West' : 'Northwest'}}</div>
+      <div class="col-4">{{city.wind.speed * 100}}km/h</div>
     </div>
   </div>
 </template>
@@ -31,6 +31,7 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'CityComponent',
+  props: ['city'],
   data () {
     return {
     }
@@ -59,6 +60,9 @@ export default defineComponent({
 }
 .my-color-gray {
   color: #c5c5c4;
+}
+.my-city {
+  max-height: 50px;
 }
 .my-city-dates {
   font-weight: bold;

@@ -18,7 +18,7 @@ export default defineComponent({
 </script>
 <style lang="scss" scoped>
 .place {
-  height: 265px;
+  height: 266px;
   border-radius: 20px;
   background: url('../assets/placetovisit.jpeg');
   // background-position-x: 5%;

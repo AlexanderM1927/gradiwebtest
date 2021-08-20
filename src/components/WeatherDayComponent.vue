@@ -5,18 +5,18 @@
         <div class="my-padding-10">
           <div class="my-img-description">
             <div class="my-img">
-              <img :src="'http://openweathermap.org/img/w/04d.png'">
+              <img :src="'http://openweathermap.org/img/w/' + day.weather[0].icon + '.png'">
             </div>
             <div class="my-text-description">
-              <b>Friday</b>
-              <p>Nublado</p>
+              <b>{{getTextFromDay(day.dt_txt)}}</b>
+              <p>{{day.weather[0].main}}</p>
             </div>
           </div>
         </div>
       </div>
       <div class="col-4">
-        <div :class="'my-weather vertical-middle ' + (day.isNextDay ? 'my-next-day' : 'my-another-day')">
-          32°/23°
+        <div :class="'my-weather vertical-middle ' + (isFirstDay ? 'my-next-day' : 'my-another-day')">
+          {{Math.round(day.main.temp_max)}}°/{{Math.round(day.main.temp_min)}}°
         </div>
       </div>
     </div>
@@ -25,12 +25,19 @@
 
 <script>
 import { defineComponent } from 'vue'
+import { date } from 'quasar'
 
 export default defineComponent({
   name: 'WeatherDayComponent',
-  props: ['day'],
+  props: ['day', 'isFirstDay'],
   data () {
     return {
+    }
+  },
+  methods: {
+    getTextFromDay (day) {
+      const formattedString = date.formatDate(new Date(day), 'dddd')
+      return formattedString
     }
   }
 })
@@ -55,7 +62,7 @@ export default defineComponent({
   word-break: break-word;
   text-align: center;
   height: 100%;
-  line-height: 40px;
+  line-height: 60px;
   border-radius: 10px;
   color: white;
   font-weight: bold;

@@ -1,9 +1,9 @@
 <template>
   <div class="my-widget">
     <div class="box arriba">
-      <img :src="'http://openweathermap.org/img/w/' + iconcode + '.png'">
+      <img :src="'http://openweathermap.org/img/w/' + weather.weather[0].icon + '.png'">
     </div>
-    <div class="box abajo">31°</div>
+    <div class="box abajo">{{Math.round(weather.main.temp)}}</div>
   </div>
 </template>
 
@@ -12,11 +12,13 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'WidgetComponent',
+  props: ['weather'],
   data () {
     return {
-      text: 'Bogota',
-      iconcode: '04d'
+      text: 'Bogota'
     }
+  },
+  mounted () {
   }
 })
 </script>
@@ -28,6 +30,7 @@ export default defineComponent({
   width: 72px;
   background: #7d68e6;
   border-radius: 10px 10px 0px 0px;
+  z-index: 2;
 }
 .box {
   border-radius: 0px 10px 10px 0px;
