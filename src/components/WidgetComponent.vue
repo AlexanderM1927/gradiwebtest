@@ -28,6 +28,7 @@ export default defineComponent({
   width: 72px;
   background: #7d68e6;
   border-radius: 10px 10px 0px 0px;
+  z-index: 2;
 }
 .box {
   border-radius: 0px 10px 10px 0px;

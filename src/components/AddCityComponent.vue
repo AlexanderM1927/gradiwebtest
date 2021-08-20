@@ -41,14 +41,6 @@ export default defineComponent({
   max-height: 100px;
   display: block;
 }
-.my-center {
-  text-align: center;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-}
 .my-custom-btn {
   font-weight: bold;
   background: #f0f1fb !important;

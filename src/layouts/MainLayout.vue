@@ -4,15 +4,13 @@
       <!-- <router-view /> -->
       <div class="row">
         <div class="col-md-11 col-xs-9"></div>
-        <div class="col-md-1 col-xs-3">
-          <center>
-            <img src="../assets/logo.png">
-          </center>
+        <div class="col-md-1 col-xs-3 my-center animate__animated animate__fadeIn">
+          <img src="../assets/logo.png">
         </div>
       </div>
       <div class="my-main-box">
         <widget-component class="animate__animated animate__slideInLeft"></widget-component>
-        <banner-component></banner-component>
+        <banner-component class="animate__animated animate__slideInLeft"></banner-component>
         <div class="row my-containers animate__animated animate__slideInLeft">
           <div class="col-md-9 col-xs-12">
             <div class="row">
@@ -106,18 +104,6 @@ export default defineComponent({
     CityComponent,
     AddCityComponent
   },
-
-  // setup () {
-  //   const leftDrawerOpen = ref(false)
-
-  //   return {
-  //     essentialLinks: linksList,
-  //     leftDrawerOpen,
-  //     toggleLeftDrawer () {
-  //       leftDrawerOpen.value = !leftDrawerOpen.value
-  //     }
-  //   }
-  // }
   data () {
     return {
       text: 'Hello world',
@@ -131,6 +117,19 @@ export default defineComponent({
         isNextDay: false
       },
       modalAddPlace: false
+    }
+  },
+  mounted () {
+    this.getWeatherMainCity()
+  },
+  methods: {
+    getWeatherMainCity () {
+      const xhttp = new XMLHttpRequest()
+      xhttp.onload = (response) => {
+        console.log(JSON.parse(response.target.response))
+      }
+      xhttp.open('GET', 'https://api.openweathermap.org/data/2.5/weather?q=bogota&appid=2feec8ba20ee284ee9c81255cddb20b4')
+      xhttp.send()
     }
   }
 })
