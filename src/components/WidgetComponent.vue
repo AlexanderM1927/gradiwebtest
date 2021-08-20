@@ -3,7 +3,7 @@
     <div class="box arriba">
       <img :src="'http://openweathermap.org/img/w/' + weather.weather[0].icon + '.png'">
     </div>
-    <div class="box abajo">{{Math.round(weather.main.temp)}}</div>
+    <div class="box abajo">{{Math.round(weather.main.temp)}}°</div>
   </div>
 </template>
 
