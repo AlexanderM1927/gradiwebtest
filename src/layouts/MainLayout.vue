@@ -38,7 +38,27 @@
               <div class="col-md-1 col-xs-12"></div>
               <div class="col-md-3 col-xs-12">
                 <div class="my-title-reviews">
-                  <b>Top reviews</b>
+                  <div class="row">
+                    <div class="col-6">
+                      <b>Top reviews</b>
+                    </div>
+                    <div class="col-6">
+                      <div class="my-avatars-list">
+                        <q-avatar class="my-avatar" rounded>
+                          <img src="https://cdn.quasar.dev/img/avatar.png">
+                        </q-avatar>
+                        <q-avatar class="my-avatar" rounded>
+                          <img src="https://cdn.quasar.dev/img/avatar.png">
+                        </q-avatar>
+                        <q-avatar class="my-avatar" rounded>
+                          <img src="https://cdn.quasar.dev/img/avatar.png">
+                        </q-avatar>
+                        <q-avatar class="my-avatar" rounded>
+                          +5
+                        </q-avatar>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <div class="my-mt-10">
                   <place-to-visit-mini-component></place-to-visit-mini-component>
@@ -143,5 +163,15 @@ export default defineComponent({
   font-size: 17px;
   line-height: 30px;
   color: #c6c6c5;
+}
+.my-avatar {
+  height: 30px;
+  width: 30px;
+  background: #b3a8e7;
+  color: white;
+  margin-left: 2px;
+}
+.my-avatars-list {
+  margin-left: 30px;
 }
 </style>
