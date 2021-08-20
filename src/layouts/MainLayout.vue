@@ -121,6 +121,7 @@ export default defineComponent({
   },
   mounted () {
     this.getWeatherMainCity()
+    this.getForecast()
   },
   methods: {
     getWeatherMainCity () {
@@ -129,6 +130,14 @@ export default defineComponent({
         console.log(JSON.parse(response.target.response))
       }
       xhttp.open('GET', 'https://api.openweathermap.org/data/2.5/weather?q=bogota&appid=2feec8ba20ee284ee9c81255cddb20b4&units=metric')
+      xhttp.send()
+    },
+    getForecast () {
+      const xhttp = new XMLHttpRequest()
+      xhttp.onload = (response) => {
+        console.log(JSON.parse(response.target.response))
+      }
+      xhttp.open('GET', 'https://api.openweathermap.org/data/2.5/forecast?q=bogota&appid=2feec8ba20ee284ee9c81255cddb20b4&units=metric')
       xhttp.send()
     }
   }
