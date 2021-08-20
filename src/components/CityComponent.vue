@@ -63,6 +63,7 @@ export default defineComponent({
 }
 .my-city {
   max-height: 50px;
+  overflow: hidden;
 }
 .my-city-dates {
   font-weight: bold;
